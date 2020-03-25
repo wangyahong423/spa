@@ -1,21 +1,14 @@
 $(function () {
-    var $btn = $('input'),
-        num = 6,
-        timer;
+    $('input').click(function(){
+        var $code = $('<div><pre class="javascript"></pre></div>');
+        var $txt = $('textarea');
 
-    timer = setInterval(function () {
-        num--;
-        if(num===0){
-            clearInterval(timer);
-            $btn.val("同意");
-            $btn.removeAttr('disabled');
+        if($txt.val() !== ''){
+            // .find()定位到某个元素
+            $code.find('pre').html($txt.val());
+            // hljs.highlightBlock()是特定的高亮方法
+            hljs.highlightBlock($code.find('pre')[0]);
+            $('body').append($code);
         }
-        else{
-            $btn.val('同意 (' + num + 's)');
-        }
-    },1000)
-
-    $btn.click(function () {
-        alert('就知道你会同意的！');
-    });
+    })
 });
