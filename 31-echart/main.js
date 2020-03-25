@@ -1,21 +1,40 @@
 $(function () {
-    var $btn = $('input'),
-        num = 6,
-        timer;
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    var xData = [];
+    var yData = [];
 
-    timer = setInterval(function () {
-        num--;
-        if(num===0){
-            clearInterval(timer);
-            $btn.val("同意");
-            $btn.removeAttr('disabled');
+    for(var p=0;p<=1;p+=0.01){
+        xData.push(p);
+        if(p===0 || p===1){
+            yData.push(0)
         }
         else{
-            $btn.val('同意 (' + num + 's)');
+            yData.push(-1*p*Math.log2(p) -(1-p)*Math.log2(1-p));
         }
-    },1000)
+    }
 
-    $btn.click(function () {
-        alert('就知道你会同意的！');
-    });
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '二进熵函数'
+        },
+        tooltip: {},
+        legend: {
+            data:['信息量']
+        },
+        xAxis: {
+            data: xData
+        },
+        yAxis: {},
+        series: [{
+            name: '信息量',
+            type: 'line',
+            smooth: true,
+            data: yData
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
 });
