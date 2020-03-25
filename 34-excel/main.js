@@ -1,21 +1,17 @@
 $(function () {
-    var $btn = $('input'),
-        num = 6,
-        timer;
-
-    timer = setInterval(function () {
-        num--;
-        if(num===0){
-            clearInterval(timer);
-            $btn.val("同意");
-            $btn.removeAttr('disabled');
-        }
-        else{
-            $btn.val('同意 (' + num + 's)');
-        }
-    },1000)
-
-    $btn.click(function () {
-        alert('就知道你会同意的！');
-    });
+    var data = [
+        ['', 'Ford', 'Tesla', 'Toyota', 'Honda'],
+        ['2017', 10, 11, 12, 13],
+        ['2018', 20, 11, 14, 13],
+        ['2019', 30, 15, 12, 13]
+      ];
+      
+      var container = document.getElementById('example');
+      var hot = new Handsontable(container, {
+        data: data,
+        rowHeaders: true,
+        colHeaders: true,
+        filters: true,
+        dropdownMenu: true
+      });
 });
