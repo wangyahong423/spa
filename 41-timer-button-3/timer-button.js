@@ -1,4 +1,8 @@
-// 构造函数
+var timerBtn = {
+    show:function () {
+
+    }
+}
 function TimerButton (){
     var $btn = $("<input class='timer-button' type='button' disabled>");
         var cfg = {
@@ -34,7 +38,7 @@ function TimerButton (){
 // 不用 page load event
 /*
 封装成对象，有几种方案：
-1.简单对象字面量 ，不完全面向对象，不能包括私有方法
+1.简单对象字面量 ，不完全面向对象，不能包括私有方法(未讲)
 var timerBtn = {
     {
         show: function()
