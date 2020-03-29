@@ -1,24 +1,21 @@
-var $timerButton = (function () {
-    // $btn.css({
-    //     height: '50px',
-    //     width: '100px'
-    // });
-    function show(conf){
-        var $btn = $("<input class='timer-button' type='button' disabled>");
+// 构造函数
+function TimerButton (){
+    var $btn = $("<input class='timer-button' type='button' disabled>");
         var cfg = {
             container:'body',
             num:6,
             title:'同意',
-            // onClick:null
-        },
-        timer;
+            },
+            timer;
+
+    // 利用this改成公开函数
+    this.show = function(conf){
         // 1.Dom draw
         $(cfg.container).append($btn);
         $.extend(cfg,conf);
-
         $btn.val(cfg.title + '(' + cfg.num + 's)');
         // 2.event bind
-        clearInterval(timer)
+        clearInterval(timer);
         timer = setInterval(function () {
             cfg.num--;
             if(cfg.num===0){
@@ -31,15 +28,9 @@ var $timerButton = (function () {
             }
         },1000)
         $btn.click(cfg.onClick);
-
     }
     
-    
-    return {
-        show: show
-    }
-}());
-
+};
 // 不用 page load event
 /*
 封装成对象，有几种方案：
